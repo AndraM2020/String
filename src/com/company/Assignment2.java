@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Assignment2 {
     public static void main(String[] args) {
         String theMountainSentence = "Climb mountains not so the world can see you, but so you can see the world";
@@ -45,6 +48,7 @@ public class Assignment2 {
 
 
     public static void repeatedWords(String theMountainSentence) {
+        /*
         String[] wordsArr = theMountainSentence.split("\\s+");
         System.out.print("These words are repeated in the sentence: ");
         int count2 = 0;
@@ -62,7 +66,15 @@ public class Assignment2 {
                 System.out.print(wordsArr[i] + "; ");
             }
         }
-        System.out.println("");
+        System.out.println("");*/
+
+        System.out.print("These words are repeated in the sentence: \n");
+        Pattern p = Pattern.compile("\\b(\\w+)\\b(?=.*\\b(\\1)\\b)", Pattern.DOTALL); // matches duplicates only in a single line
+        Matcher m = p.matcher(theMountainSentence);
+        while (m.find()) {
+            System.out.println("at: " + m.start(1) + " " + m.group(1));
+            System.out.println("    " + m.start(2) + " " + m.group(2));
+        }
     }
 }
 
